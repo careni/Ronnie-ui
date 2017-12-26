@@ -41,9 +41,9 @@
     mounted () {
       if (this.radius === 'half') {
         if (this.size === 'normal' || this.size === 'large') {
-          this.$el.style.borderRadius = '25px'
+          this.$el.style.borderRadius = 25 / 37.5 + 'rem'
         } else {
-          this.$el.style.borderRadius = '12.5px'
+          this.$el.style.borderRadius = 12.5 / 37.5 + 'rem'
         }
       }
     },
@@ -60,11 +60,14 @@
     border: none;
   }
   .i-button{
+    display: block;
     height: 50px;
     font-size: 16px;
+    box-sizing: border-box;
     &-text{
       display: block;
-      max-width: 100%;
+      max-width: 70%;
+      margin: 0 auto;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

@@ -1,0 +1,6 @@
+/build/
+/config/
+/dist/
+/*.js
+/examples/resize.js
+/test/unit/coverage/

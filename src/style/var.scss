@@ -1,0 +1,56 @@
+$black: #000;
+$white: #fff;
+$theme: #f28300;
+$main-color: #111;
+$desc-color: #666;
+$normal-color: #999;
+$line-color: #f0f0f0;
+$cover-color: #eee;
+$danger-color: #ff3b30;
+
+
+$z-index-zoom: 1;
+@mixin arrowStyle ($size,$thin,$color,$deg) {
+  content: "";
+  width: $size;
+  height: $size;
+  border: $thin solid $color;
+  box-sizing: border-box;
+  border-bottom-width: 0;
+  border-left-width: 0;
+  transform: rotate($deg);
+}
+
+@mixin setSize ($w,$h) {
+  width: $w;
+  height: $h;
+}
+
+@mixin setFlex ($align-item:flex-start,$justify-content:flex-start) {
+  display: flex;
+  align-items: $align-item;
+  justify-content: $justify-content;
+}
+
+@mixin ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow:hidden;
+}
+
+div.is-fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-index-zoom;
+}
+.i-header{
+  z-index: 888;
+}
+.i-popup{
+  z-index: 999;
+}
+.i-message-box{
+  z-index: 999;
+}

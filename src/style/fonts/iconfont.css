@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.ipanelIcon {
+    font-family: "iconfont";
+}

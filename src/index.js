@@ -1,4 +1,4 @@
-// import './style/fonts/iconfont.css'
+import './style/fonts/iconfont.css'
 import Button from '%/button/index'
 import Header from '%/header/index'
 import Footer from '%/footer/index'

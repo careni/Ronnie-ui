@@ -26,7 +26,6 @@
       <li class="page-list-item" @click="locationTo('search')">
         <div class="page-list-item-info">Search</div>
       </li>
-      <i-list>sdfsdfsdfsdf</i-list>
     </ul>
   </div>
 </template>

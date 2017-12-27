@@ -1,6 +1,6 @@
 # Button
 
->按钮，自定义内部内容
+>基础按钮，自定义内部内容
 
 ----------
 
@@ -13,25 +13,25 @@
 ## 例子
 改变类型
 ```html
-  <i-button type='default'></i-button>
-  <i-button type='primary'></i-button>
-  <i-button type='danger'></i-button>
-  <i-button type='line'></i-button>
+  <i-button type='default'>default</i-button>
+  <i-button type='primary'>primary</i-button>
+  <i-button type='danger'>danger</i-button>
+  <i-button type='line'>line</i-button>
 ```
 
 改变大小
 ```html
-  <i-button size='large'></i-button>
-  <i-button size='normal'></i-button>
-  <i-button size='small'></i-button>
+  <i-button size='large'>large</i-button>
+  <i-button size='normal'>normal</i-button>
+  <i-button size='small'>small</i-button>
 ```
 
 改变圆角
 改变大小
 ```html
-  <i-button radius='low'></i-button>
-  <i-button radius='half'></i-button>
-  <i-button radius='none'></i-button>
+  <i-button radius='low'>low</i-button>
+  <i-button radius='half'>half</i-button>
+  <i-button radius='none'>none</i-button>
 ```
 
 禁用按钮
@@ -40,6 +40,14 @@
 ```
 ```html
   <i-button :disabled='option'></i-button>
+```
+
+自定义内容(文字或图标)
+```html
+  <i-button size='large'>
+    <span>SELFMADE</span>
+    <span class="icon">5</span>
+  </i-button>
 ```
 
 ## API

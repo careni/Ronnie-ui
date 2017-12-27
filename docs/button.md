@@ -8,7 +8,7 @@
 ```javascript
   import { Button } from 'ronnie-ui'
 
-  Vue.components(Button.name, Button)
+  Vue.component(Button.name, Button)
 ```
 ## 例子
 改变类型

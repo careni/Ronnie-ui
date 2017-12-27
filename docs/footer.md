@@ -8,7 +8,7 @@
 ```javascript
   import { Footer } from 'ronnie-ui'
 
-  Vue.components(Footer.name, Footer)
+  Vue.component(Footer.name, Footer)
 ```
 
 ## 例子
@@ -45,11 +45,13 @@
 ```
 
 ## API
-|参数|说明|类型|可选值|默认值|
-|----|----|----|----|----|
 |navs|显示的所有项目数据|Array||[]|
 |fixed|固定到底部|Boolean||true|
-|@selectFooter|获取当前选中项目的值|Object||navs[0]|
+
+## Events
+|事件名称|事件说明|回调参数及类型|默认值|
+|----|----|----|----|
+|selectFooter|点击底部导航项目时的回调函数|返回当前选中的项目的对应值，类型为Object|navs[0]|
 
 
 

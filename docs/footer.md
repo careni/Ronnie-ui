@@ -8,7 +8,7 @@
 ```javascript
   import { Footer } from 'ronnie-ui'
 
-  Vue.components(Footer.name, Footer)
+  Vue.component(Footer.name, Footer)
 ```
 
 ## 例子

@@ -103,6 +103,7 @@
     border-top: 1px solid $line-color;
     font-size: 14px;
     overflow: hidden;
+    background: $white;
     &-stable-list{
       display: flex;
       justify-content: space-around;

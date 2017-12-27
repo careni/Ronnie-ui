@@ -3,8 +3,8 @@
     <i-header :fixed="fixed">
       <span slot="title">Search</span>
     </i-header>
-    <i-search @input="getValue" v-model='value'></i-search>
-    <div class="message">{{message}},{{value}}</div>
+    <i-search v-model='value' :association='association'></i-search>
+    <div class="message">搜索关键字：{{value}}</div>
   </div>
 </template>
 <script>
@@ -13,12 +13,18 @@
       return {
         fixed: false,
         message: '',
-        value: ''
+        value: '',
+        association: false
       }
     },
-    methods: {
-      getValue (value) {
-        this.message = value
+    watch: {
+      value (n, o) {
+        console.log(n, o)
+        if (this.value !== '') {
+          this.association = true
+        } else {
+          this.association = false
+        }
       }
     }
   }
@@ -30,5 +36,8 @@
     height: 40px;
     border: 1px solid $line-color;
     margin: 20px 0;
+    line-height: 40px;
+    font-size: 16px;
+    text-indent: 15px;
   }
 </style>

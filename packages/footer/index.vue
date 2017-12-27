@@ -67,6 +67,7 @@
     height: 44px;
     border-top:1px solid $line-color;
     border-bottom:1px solid $line-color;
+    background: $white;
     &-item{
       display: block;
       width: 38px;

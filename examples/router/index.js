@@ -4,6 +4,7 @@ import index from '@/pages/index'
 import button from '@/pages/button'
 import header from '@/pages/header'
 import navbar from '@/pages/navbar'
+import tag from '@/pages/tag'
 import footer from '@/pages/footer'
 import messagebox from '@/pages/message-box.vue'
 import popup from '@/pages/popup'
@@ -52,6 +53,11 @@ export default new Router({
       path: '/search',
       name: 'search',
       component: search
+    },
+    {
+      path: '/tag',
+      name: 'tag',
+      component: tag
     }
   ]
 })

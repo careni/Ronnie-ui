@@ -3,6 +3,7 @@ import Button from '%/button/index'
 import Header from '%/header/index'
 import Footer from '%/footer/index'
 import Navbar from '%/navbar/index'
+import Tag from '%/tag/index'
 import Picker from '%/picker/index'
 import List from '%/list/index'
 import Search from '%/search/index'
@@ -19,6 +20,7 @@ const install = function (Vue, Config = {}) {
   Vue.component(Header.name, Header)
   Vue.component(Footer.name, Footer)
   Vue.component(Navbar.name, Navbar)
+  Vue.component(Tag.name, Tag)
   Vue.component(Picker.name, Picker)
   Vue.component(List.name, List)
   Vue.component(Search.name, Search)
@@ -33,5 +35,14 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   install,
   version,
-  Button
+  Button,
+  Header,
+  Footer,
+  Navbar,
+  Tag,
+  Picker,
+  List,
+  Search,
+  MessageBox,
+  Popup
 }

@@ -1,17 +1,20 @@
 <template>
   <div class="i-search">
-    <div class="i-search-inputgroup" :class="{animation: animation}">
-      <span class="i-search-inputgroup-logo ipanelIcon">匨</span>
-      <input type="text"
-             class="i-search-inputgroup-input"
-             :placeholder="placeholder"
-             @focus='changeStyle'
-             v-model="value"
-             @input="sendValue">
-      <span class="i-search-inputgroup-voice ipanelIcon">俀</span>
+    <div class="i-search-content">
+      <div class="i-search-inputgroup" :class="{animation: animation}">
+        <span class="i-search-inputgroup-logo ipanelIcon">匨</span>
+        <input type="text"
+               class="i-search-inputgroup-input"
+               :placeholder="placeholder"
+               @focus='changeStyle'
+               v-model="value"
+               @input="handleInput"
+               @blur="handleBlur">
+        <span class="i-search-inputgroup-voice ipanelIcon">俀</span>
+      </div>
+      <div class="i-search-cancel" @click="handleClick" v-if="animation">取消</div>
     </div>
-    <div class="i-search-cancel" @click="handleClick" v-if="animation">取消</div>
-    <div class="association" v-if="assocition">
+    <div class="association" v-if="association">
       <slot name="association">
         <ul class="association-ul">
           <li class="association-ul-li">1</li>
@@ -27,16 +30,21 @@
 <script>
   export default {
     name: 'i-search',
+    props: {
+      association: {
+        type: Boolean,
+        default: false
+      }
+    },
     data () {
       return {
         placeholder: '搜索设备',
         animation: false,
-        value: '',
-        assocition: false
+        value: ''
       }
     },
     methods: {
-      sendValue () {
+      handleInput () {
         this.$emit('input', this.value)
       },
       changeStyle (evt) {
@@ -47,6 +55,16 @@
         this.value = ''
         this.animation = false
         this.$emit('click', evt)
+      },
+      handleBlur (evt) {
+        if (this.value !== '') {
+          this.$emit('blur', evt)
+          return
+        }
+        this.value = ''
+        this.animation = false
+        console.log(2)
+        this.$emit('blur', evt)
       }
     },
     watch: {
@@ -63,17 +81,23 @@
     width: 100%;
     height: 40px;
     background: #f0f0f0;
+    &-content{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 0;
+      width: 100%;
+      height: 100%;
+    }
     &-inputgroup{
-      display: inline-block;
       box-sizing: border-box;
       position: relative;
-      top: 6.25px;
-      left: 15px;
       height: 27.5px;
       width: 345px;
+      background: $white;
       &-logo{
         position: absolute;
-        top:55%;
+        top:52%;
         transform: translateY(-50%);
         color: #a1a1a1;
         font-size: 14px;
@@ -89,21 +113,17 @@
       &-input{
         border: none;
         outline: none;
-        width: 100%;
+        width: 80%;
         height: 100%;
-        text-indent: 20px;
+        margin-left: 20px;
         font-size: 13px;
-        line-height: 27.5px;
       }
     }
     &-cancel{
-      position: relative;
       display: inline-block;
       color: $theme;
       width: 30px;
       text-align: center;
-      top: 7px;
-      right: -12px;
       font-size: 14px;
     }
   }
@@ -118,8 +138,8 @@
       box-shadow: 0 0 10px #f0f0f0;
       &-li{
         width: 100%;
-        height: 30px;
-        line-height: 30px;
+        height: 40px;
+        line-height: 40px;
         text-indent: 20px;
         border-bottom: 1px solid $line-color;
       }
@@ -127,6 +147,6 @@
   }
   .animation{
     width: 325px;
-    left: 5px;
+    left: -5px;
   }
 </style>

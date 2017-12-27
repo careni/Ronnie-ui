@@ -27,7 +27,6 @@
 ```
 
 改变圆角
-改变大小
 ```html
   <i-button radius='low'>low</i-button>
   <i-button radius='half'>half</i-button>

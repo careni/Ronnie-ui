@@ -1,6 +1,6 @@
 # Footer
 
->底部导航， 自定义导航按钮,  点击导航跳转到对应路由
+>底部导航， 自定义导航按钮, 点击导航跳转到对应路由
 
 ------------
 
@@ -8,7 +8,7 @@
 ```javascript
   import { Footer } from 'ronnie-ui'
 
-  Vue.component(Footer.name, Footer)
+  Vue.components(Footer.name, Footer)
 ```
 
 ## 例子
@@ -45,6 +45,8 @@
 ```
 
 ## API
+|参数|说明|类型|可选值|默认值|
+|----|----|----|----|----|
 |navs|显示的所有项目数据|Array||[]|
 |fixed|固定到底部|Boolean||true|
 

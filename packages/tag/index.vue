@@ -54,7 +54,6 @@
     height: 25px;
     border: 1px solid $theme;
     box-sizing: border-box;
-    margin: 0 auto;
     border-radius: 5px;
     font-size: 13px;
     &-item{

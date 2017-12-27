@@ -29,6 +29,9 @@
       <li class="page-list-item" @click="locationTo('tag')">
         <div class="page-list-item-info">Tag</div>
       </li>
+      <li class="page-list-item" @click="locationTo('form')">
+        <div class="page-list-item-info">Form</div>
+      </li>
     </ul>
   </div>
 </template>

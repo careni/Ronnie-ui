@@ -55,6 +55,7 @@
   }
 </script>
 <style lang='scss' scoped>
+  @import '../../src/style/var.scss';
   button{
     outline: none;
     border: none;
@@ -74,14 +75,14 @@
     }
   }
   .i-button-default{
-    background: #f28300;
-    border: 1px solid #f28300;
+    background: $theme;
+    border: 1px solid $theme;
     color: #fff;
   }
   .i-button-primary{
     background: #fff;
-    border: 1px solid #f28300;
-    color: #f28300;
+    border: 1px solid $theme;
+    color: $theme;
   }
   .i-button-danger{
     background: #ff3b30;
@@ -89,9 +90,9 @@
     color: #fff;
   }
   .i-button-line{
-    border: 1px solid #f28300;
+    border: 1px solid $theme;
     background: #fff;
-    color: #f28300;
+    color: $theme;
   }
   .i-button-small{
     width: 75px;

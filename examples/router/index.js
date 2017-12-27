@@ -5,6 +5,7 @@ import button from '@/pages/button'
 import header from '@/pages/header'
 import navbar from '@/pages/navbar'
 import tag from '@/pages/tag'
+import form from '@/pages/form'
 import footer from '@/pages/footer'
 import messagebox from '@/pages/message-box.vue'
 import popup from '@/pages/popup'
@@ -58,6 +59,11 @@ export default new Router({
       path: '/tag',
       name: 'tag',
       component: tag
+    },
+    {
+      path: '/form',
+      name: 'form',
+      component: form
     }
   ]
 })

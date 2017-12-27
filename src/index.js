@@ -4,6 +4,7 @@ import Header from '%/header/index'
 import Footer from '%/footer/index'
 import Navbar from '%/navbar/index'
 import Tag from '%/tag/index'
+import Form from '%/form/index'
 import Picker from '%/picker/index'
 import List from '%/list/index'
 import Search from '%/search/index'
@@ -21,6 +22,7 @@ const install = function (Vue, Config = {}) {
   Vue.component(Footer.name, Footer)
   Vue.component(Navbar.name, Navbar)
   Vue.component(Tag.name, Tag)
+  Vue.component(Form.name, Form)
   Vue.component(Picker.name, Picker)
   Vue.component(List.name, List)
   Vue.component(Search.name, Search)
@@ -40,6 +42,7 @@ export default {
   Footer,
   Navbar,
   Tag,
+  Form,
   Picker,
   List,
   Search,

@@ -8,7 +8,7 @@ let SINGLE_TEXT = '好的'
 let PLACEHOLDER = '默认输入内容...'
 
 let defaults = {
-  message: '默认输入框',
+  message: '默认Message',
   type: 'msg',
   singleButton: false,
   cancelText: CANCEL_TEXT,

@@ -64,21 +64,21 @@
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 44px;
+    height: 88px;
     border-top:1px solid $line-color;
     border-bottom:1px solid $line-color;
     background: $white;
     &-item{
       display: block;
-      width: 38px;
-      height: 35px;
+      width: 76px;
+      height: 70px;
       text-align: center;
       color: #666;
       &-icon{
-        font-size: 16px;
+        font-size: 32px;
       }
       p{
-        font-size: 12px;
+        font-size: 24px;
       }
     }
   }

@@ -45,7 +45,7 @@
     position: relative;
     display: flex;
     justify-content: space-around;
-    height: 44px;
+    height: 88px;
     width: 100%;
     background: #40caff;
     background: $theme;
@@ -56,24 +56,24 @@
       box-sizing: border-box;
       position: relative;
       width: 20%;
-      height: 44px;
-      line-height: 46px;
-      font-size: 14px;
-      text-indent: 10px;
+      height: 88px;
+      line-height: 90px;
+      font-size: 28px;
+      text-indent: 20px;
     }
     &-left-back{
-      height: 45px;
+      height: 90px;
     }
     &-right{
       text-align: right;
-      padding-right: 10px;
+      padding-right: 20px;
     }
     &-title{
       text-align: center;
       width: 50%;
-      height: 44px;
-      line-height: 44px;
-      font-size: 16px;
+      height: 88px;
+      line-height: 88px;
+      font-size: 32px;
       @include ellipsis;
     }
   }

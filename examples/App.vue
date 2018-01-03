@@ -11,6 +11,9 @@ export default {
 </script>
 
 <style>
+#app{
+    overflow-y: scroll;
+}
 *{
   margin:0;
   padding:0;

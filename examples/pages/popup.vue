@@ -39,11 +39,11 @@
 <style lang="scss" scoped>
   .index {
     display: block;
-    margin: 10px auto;
+    margin: 20px auto;
   }
   .message{
     width: 100%;
-    height: 40px;
+    height: 80px;
     border: 1px solid #f0f0f0;
     display: flex;
     align-items: center;

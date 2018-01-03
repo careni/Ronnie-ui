@@ -7,9 +7,11 @@ import navbar from '@/pages/navbar'
 import tag from '@/pages/tag'
 import form from '@/pages/form'
 import footer from '@/pages/footer'
+import card from '@/pages/card'
 import messagebox from '@/pages/message-box.vue'
 import popup from '@/pages/popup'
 import search from '@/pages/search'
+import picker from '@/pages/picker'
 
 Vue.use(Router)
 
@@ -64,6 +66,16 @@ export default new Router({
       path: '/form',
       name: 'form',
       component: form
+    },
+    {
+      path: '/card',
+      name: 'card',
+      component: card
+    },
+    {
+      path: '/picker',
+      name: 'picker',
+      component: picker
     }
   ]
 })

@@ -32,6 +32,12 @@
       <li class="page-list-item" @click="locationTo('form')">
         <div class="page-list-item-info">Form</div>
       </li>
+      <li class="page-list-item" @click="locationTo('card')">
+        <div class="page-list-item-info">Card</div>
+      </li>
+      <li class="page-list-item" @click="locationTo('picker')">
+        <div class="page-list-item-info">Picker</div>
+      </li>
     </ul>
   </div>
 </template>
@@ -60,21 +66,21 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      right: 20px;
+      right: 40px;
       margin: auto;
-      @include arrowStyle(8px,2px,#c8c8cd,45deg);
+      @include arrowStyle(16px,4px,#c8c8cd,45deg);
     }
     &-item{
       position: relative;
       display: flex;
-      height: 50px;
+      height: 100px;
       width: 100%;
       border-bottom: 1px solid #F0F0F0;
-      line-height: 50px;
+      line-height: 100px;
       &-info{
         width: 100%;
-        text-indent: 20px;
-        font-size: 14px;
+        text-indent: 40px;
+        font-size: 28px;
       }
     }
   }

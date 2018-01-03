@@ -98,34 +98,34 @@
   .i-navbar{
     position: relative;
     width: 100%;
-    height: 32px;
+    height: 64px;
     border-bottom: 1px solid $line-color;
     border-top: 1px solid $line-color;
-    font-size: 14px;
+    font-size: 28px;
     overflow: hidden;
     background: $white;
     &-stable-list{
       display: flex;
       justify-content: space-around;
       width: 100%;
-      height: 32px;
+      height: 64px;
       color: $normal-color;
       &-item{
-        height: 32px;
-        line-height: 32px;
+        height: 64px;
+        line-height: 64px;
         float: left;
       }
     }
     &-scroll-list{
       position: relative;
-      height: 42px;
+      height: 84px;
       overflow-x: scroll;
       white-space: nowrap;
       z-index: 1;
       &-item{
-        height: 32px;
+        height: 64px;
         margin: 0 15px;
-        line-height: 32px;
+        line-height: 65px;
         display: inline-block;
       }
     }
@@ -133,13 +133,13 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: 32px;
-      height: 32px;
+      width: 64px;
+      height: 64px;
       box-sizing: border-box;
-      line-height: 32px;
+      line-height: 64px;
       text-align: center;
       color: #999;
-      font-size: 18px;
+      font-size: 36px;
       box-shadow: 0 0 5px #999;
       z-index: 999;
       background: $white;
@@ -150,7 +150,7 @@
       border-bottom: 2px solid $theme;
     }
     .last{
-      margin-right: 47px;
+      margin-right: 94px;
     }
   }
 </style>

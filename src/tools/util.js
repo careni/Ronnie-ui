@@ -1,20 +1,12 @@
-// import Vue from 'vue'
-
 /**
  * 获取DOM元素
  * @param  {String} index 选择器
- * @param  {Boolean} bool  选择第一个或者所有
  * @return {Array}       DOM树
  */
-export const getDom = function (index, bool = false) {
+export const gdom = function (index) {
   let el = null
 
-  if (bool) {
-    el = document.querySelector(index)
-  } else {
-    el = document.querySelectorAll(index)
-  }
-
+  el = document.querySelectorAll(index)
   return el
 }
 
@@ -32,7 +24,10 @@ export const revCls = function (el, cls) {
 
   let nextCls = ''
   if (curCls.match(cls)) {
-    nextCls = curCls.replace(cls, '')
+    let clsArr = curCls.split(' ')
+    let index = clsArr.indexOf(cls)
+    clsArr.splice(index, index + 1)
+    nextCls = clsArr.join(' ')
     el.setAttribute('class', nextCls)
   }
 }
@@ -51,7 +46,28 @@ export const addCls = function (el, cls) {
 
   let nextCls = ''
   if (!curCls.match(cls)) {
-    nextCls = curCls + ' ' + cls
+    let clsArr = curCls.split(' ')
+    clsArr.push(cls)
+    nextCls = clsArr.join(' ')
     el.setAttribute('class', nextCls)
   }
+}
+
+/**
+ * 拷贝对象
+ * @param {*} target
+ */
+export const extend = function (target) {
+  for (var i = 1, j = arguments.length; i < j; i++) {
+    var source = arguments[i]
+    for (var prop in source) {
+      if (source.hasOwnProperty(prop)) {
+        var value = source[prop]
+        if (value !== undefined) {
+          target[prop] = value
+        }
+      }
+    }
+  }
+  return target
 }

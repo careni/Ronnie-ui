@@ -79,7 +79,7 @@
   .i-search{
     position: relative;
     width: 100%;
-    height: 40px;
+    height: 80px;
     background: #f0f0f0;
     &-content{
       display: flex;
@@ -92,44 +92,44 @@
     &-inputgroup{
       box-sizing: border-box;
       position: relative;
-      height: 27.5px;
-      width: 345px;
+      height: 55px;
+      width: 690px;
       background: $white;
       &-logo{
         position: absolute;
         top:52%;
         transform: translateY(-50%);
         color: #a1a1a1;
-        font-size: 14px;
+        font-size: 28px;
       }
       &-voice{
         position: absolute;
-        right: 10px;
+        right: 20px;
         top:55%;
         transform: translateY(-50%);
         color: #a1a1a1;
-        font-size: 14px;
+        font-size: 28px;
       }
       &-input{
         border: none;
         outline: none;
         width: 80%;
         height: 100%;
-        margin-left: 20px;
-        font-size: 13px;
+        margin-left: 40px;
+        font-size: 26px;
       }
     }
     &-cancel{
       display: inline-block;
       color: $theme;
-      width: 30px;
+      width: 60px;
       text-align: center;
-      font-size: 14px;
+      font-size: 28px;
     }
   }
   .association{
     position: absolute;
-    top: 40px;
+    top: 80px;
     width: 100%;
     height: auto;
     background: $white;
@@ -138,15 +138,15 @@
       box-shadow: 0 0 10px #f0f0f0;
       &-li{
         width: 100%;
-        height: 40px;
-        line-height: 40px;
-        text-indent: 20px;
+        height: 80px;
+        line-height: 80px;
+        text-indent: 40px;
         border-bottom: 1px solid $line-color;
       }
     }
   }
   .animation{
-    width: 325px;
-    left: -5px;
+    width: 650px;
+    left: -10px;
   }
 </style>

@@ -51,11 +51,11 @@
   @import '../../src/style/var.scss';
   .i-tag{
     width: 90%;
-    height: 25px;
-    border: 1px solid $theme;
+    height: 50px;
+    border: 2px solid $theme;
     box-sizing: border-box;
-    border-radius: 5px;
-    font-size: 13px;
+    border-radius: 10px;
+    font-size: 26px;
     &-item{
       display: flex;
       justify-conten: space-between;
@@ -68,7 +68,7 @@
         display: inline-block;
         width: 100%;
         height: 100%;
-        line-height: 25px;
+        line-height: 50px;
         text-align: center;
         border-right: 1px solid $theme;
         color: $normal-color;

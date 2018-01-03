@@ -9,7 +9,11 @@ import './resize.js'
 Vue.config.productionTip = false
 
 Vue.use(Ipanel)
-
+Vue.$Lazyload({
+  el: 'lazy',
+  time: 300,
+  distance: 50
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

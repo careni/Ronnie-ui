@@ -53,35 +53,35 @@
   let dataShow = [
     {
       id: 1,
-      name: 'AAA'
+      name: 'AAAA'
     },
     {
       id: 2,
-      name: 'BBB'
+      name: 'BBBB'
     },
     {
       id: 3,
-      name: 'CCC'
+      name: 'CCCC'
     },
     {
       id: 4,
-      name: 'DDD'
+      name: 'DDDD'
     },
     {
       id: 5,
-      name: 'EEE'
+      name: 'EEEE'
     },
     {
       id: 6,
-      name: 'FFF'
+      name: 'FFFF'
     },
     {
       id: 7,
-      name: 'GGG'
+      name: 'GGGG'
     },
     {
       id: 8,
-      name: 'HHH'
+      name: 'HHHH'
     }
   ]
   let dataStable = [
@@ -139,23 +139,23 @@
 </script>
 <style lang="scss" scoped>
   .message{
-    margin: 20px 0;
-    font-size: 14px;
+    margin: 40px 0;
+    font-size: 28px;
     width: 100%;
-    height: 50px;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border: 1px solid #f0f0f0;
     > span{
-      text-indent: 10px;
+      text-indent: 20px;
     }
   }
   span.result{
       color: #999;
-      padding-right: 10px
+      padding-right: 20px
   }
   .nav{
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 </style>

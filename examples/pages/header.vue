@@ -51,10 +51,10 @@
 </script>
 <style lang="scss" scoped>
   .page{
-    padding-top: 64px;
+    padding-top: 128px;
   }
   .line{
     width: 100%;
-    height: 35px;
+    height: 70px;
   }
 </style>

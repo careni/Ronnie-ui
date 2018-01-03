@@ -66,10 +66,10 @@
     right: 0;
     background: rgba(0,0,0,0.7);
     &-item{
-      width: 270px;
-      height: 170px;
+      width: 540px;
+      height: 340px;
       background: $white;
-      border-radius: 10px;
+      border-radius: 20px;
       &-top,&-bottom{
         width: 100%;
       }
@@ -79,21 +79,21 @@
         align-items: center;
         justify-content: center;
         text-align:center;
-        height: 125px;
-        font-size: 16px;
+        height: 250px;
+        font-size: 32px;
         .msg{
-          padding: 0 10px;
+          padding: 0 20px;
         }
       }
       &-bottom{
-        font-size: 17px;
-        height: 44px;
+        font-size: 34px;
+        height: 88px;
         border-top: 1px solid $line-color;
         color: $theme;
         text-align:center;
         &-single{
           width: 100%;
-          line-height: 44px;
+          line-height: 88px;
         }
         &-group{
           width: 100%;
@@ -103,7 +103,7 @@
           }
           span{
             width: 50%;
-            line-height: 44px;
+            line-height: 88px;
           }
         }
       }
@@ -111,9 +111,9 @@
   }
   .input{
     width: 100%;
-    height: 105px;
+    height: 210px;
     .inputTitle{
-      height: 60px;
+      height: 120px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -122,33 +122,33 @@
     .inputMsg{
       border: none;
       outline: none;
-      width: 225px;
-      height: 30px;
-      font-size: 15px;
+      width: 500px;
+      height: 60px;
+      font-size: 30px;
       border: 1px solid $line-color;
     }
   }
   .textarea{
     .textareaTitle{
-      padding: 5px 0;
+      padding: 10px 0;
     }
     .textareaMsg{
-      width: 225px;
-      height: 87.5px;
+      width: 500px;
+      height: 175px;
       border: 1px solid $line-color;
     }
   }
   .longItem{
-    height: 175px;
+    height: 350px;
   }
   .shortItem{
-    height: 150px;
+    height: 300px;
   }
   .long{
-    height: 125px;
+    height: 250px;
   }
   .short{
-    height: 105px;
+    height: 210px;
   }
 .fade-enter-active, .fade-leave-active {
   transition: all .3s ease;

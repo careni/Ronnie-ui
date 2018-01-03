@@ -46,8 +46,8 @@
   }
   .i-popup-item{
     position: absolute;
-    width: 247.5px;
-    height: 75px;
+    width: 495px;
+    height: 150px;
     top: 0;
     left: 0;
     bottom: 0;
@@ -59,8 +59,8 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    border-radius: 5px;
-    font-size: 14px;
+    border-radius: 10px;
+    font-size: 28px;
   }
   .darken {
     background: rgba(0,0,0,0.7);
@@ -77,19 +77,19 @@
     align-items: center;
     justify-content: center;
     flex-grow: 0;
-    width: 242.5px;
-    height: 75px;
+    width: 485px;
+    height: 150px;
     background: $white;
     color: $black;
-    font-size: 14px;
+    font-size: 28px;
     img{
-      width: 22.5px;
-      height: 22.5px;
+      width: 45px;
+      height: 45px;
     }
     &-content{
       display: block;
-      width: 110px;
-      text-indent: 10px;
+      width: 220px;
+      text-indent: 20px;
       @include ellipsis;
     }
   }

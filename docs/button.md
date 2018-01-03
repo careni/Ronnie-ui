@@ -10,6 +10,7 @@
 
   Vue.component(Button.name, Button)
 ```
+<i-button>你好</i-button>
 ## 例子
 改变类型
 ```html

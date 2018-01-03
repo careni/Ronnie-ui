@@ -107,11 +107,11 @@
 <style lang="scss" scoped>
 .message{
   width: 100%;
-  height: 40px;
-  margin: 20px 0;
+  height: 80px;
+  margin: 40px 0;
   border: 1px solid #f0f0f0;
   display: flex;
   align-items: center;
-  text-indent: 20px;
+  text-indent: 40px;
 }
 </style>

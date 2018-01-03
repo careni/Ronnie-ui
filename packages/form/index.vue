@@ -38,14 +38,14 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 45px;
+    height: 90px;
     border-bottom: 1px solid $line-color;
-    font-size: 13px;
+    font-size: 26px;
     &-left{
       display: flex;
       align-items: center;
-      width: 61px;
-      min-width: 61px;
+      width: 122px;
+      min-width: 122px;
       height: 100%;
       flex-grow: 0;
     }
@@ -53,7 +53,7 @@
       display: flex;
       align-items: center;
       box-sizing: border-box;
-      padding:0 5px;
+      padding:0 10px;
       height: 100%;
       flex-grow: 1;
       overflow: hidden;
@@ -61,8 +61,8 @@
     &-right{
       display: flex;
       align-items: center;
-      width: 80px;
-      min-width: 80px;
+      width: 160px;
+      min-width: 160px;
       height: 100%;
       flex-grow: 0;
     }

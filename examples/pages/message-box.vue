@@ -67,17 +67,17 @@
 <style lang="scss" scoped>
   @import '../../src/style/var.scss';
   .msg{
-    margin: 10px 0;
+    margin: 20px 0;
     width: 100%;
-    height: 40px;
+    height: 80px;
     border: 1px solid $line-color;
-    text-indent: 10px;
-    line-height: 40px;
+    text-indent: 20px;
+    line-height: 80px;
   }
   button.button{
     border-color: $line-color;
     display: block;
-    margin: 20px auto;
+    margin: 40px auto;
     color: $black;
   }
 </style>

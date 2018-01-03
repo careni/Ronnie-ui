@@ -32,7 +32,7 @@ exports.cssLoaders = function (options) {
   const px2remLoader = {
     loader: 'px2rem-loader',
     options: {
-      remUnit: 37.5,
+      remUnit: 75,
       sourceMap: options.sourceMap,
     }
   }
@@ -69,7 +69,7 @@ exports.cssLoaders = function (options) {
     less: generateLoaders('less'),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
-    px2rem: generateLoaders('px2rem', { remUnit: 37.5}),
+    px2rem: generateLoaders(),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }

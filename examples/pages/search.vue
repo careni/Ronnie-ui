@@ -33,11 +33,11 @@
   @import '../../src/style/var.scss';
   .message{
     width: 100%;
-    height: 40px;
+    height: 80px;
     border: 1px solid $line-color;
-    margin: 20px 0;
-    line-height: 40px;
-    font-size: 16px;
-    text-indent: 15px;
+    margin: 40px 0;
+    line-height: 80px;
+    font-size: 32px;
+    text-indent: 30px;
   }
 </style>

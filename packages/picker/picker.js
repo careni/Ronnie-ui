@@ -1,214 +1,245 @@
+/**
+ * 1.default options
+ * 2.instance
+ * 3.constructor
+ * 4.add events
+ * 5.trriger
+ * 6.callback
+ * 7.promise
+ * 8.send selected value
+ */
 import vuePicker from './index.vue'
 import Vue from 'vue'
 import * as utils from '../../src/tools/util'
 
+let PickerConstructor = Vue.extend(vuePicker)
+
+let instance, msgQueue
 let defaults = {
   lineHeight: 50,
   titleHeight: 40,
   unit: 'px',
-  rows: 3,
-  columns: 2,
-  leveloneId: '10001',
-  leveltwoId: '10002',
-  levelthreeId: 0,
-  levelfourId: 0,
-  levelfiveId: 0,
-  levelsixId: 0
+  levels: 3,
+  itemsShow: 3,
+  leveloneId: null,
+  leveltwoId: null,
+  levelthreeId: null,
+  levelfourId: null,
+  levelfiveId: null,
+  levelsixId: null,
+  relationOneTwo: true,
+  relationTwoThree: true,
+  relationThreeFour: true,
+  relationFourFive: true,
+  relationFiveSix: true
 }
-let PickerConstructor = Vue.extend(vuePicker)
+let nameOfRelation = ['relationOneTwo', 'relationTwoThree' ,'relationThreeFour', 'relationFourFive' ,'relationFiveSix']
+let nameOfLevel = ['levelone', 'leveltwo', 'levelthree', 'levelfour', 'levelfive', 'levelsix']
+let Events = {
+  startPosition: 0,
+  movePosition: 0,
+  endPosition: 0,
+  dValue: 0,
+  currentTranslateY: 0,
+  pattern: '\\((.+?)\\)',
+  data: [],
+  options: {},
+  supportTouch: function () {
 
-let instance
-
-let dataName = ['levelone', 'leveltwo', 'levelthree', 'levelfour', 'levelfive', 'levelsix']
-
-/**
- * 初始化组件实例
- */
-let initInstance = function () {
-  instance = new PickerConstructor({
-    el: document.createElement('div')
-  })
-}
-
-/**
- * 初始化组件样式
- * @param {*} options
- */
-let initStyle = function (options) {
-  let li = utils.gdom('.i-picker-item-child-li')
-  let ul = utils.gdom('.i-picker-item-child')
-  let header = utils.gdom('.i-picker-header')[0]
-  let center = utils.gdom('.i-picker-center')[0]
-
-  for (let i = 0; i < li.length; i++) {
-    li[i].style.height = options.lineHeight + options.unit
-    li[i].style.lineHeight = options.lineHeight + options.unit
-  }
-  for (let i = 0; i < ul.length; i++) {
-    ul[i].style.height = options.lineHeight * options.rows + options.unit
-    ul[i].style.padding = '10px 0'
-  }
-  header.style.height = options.titleHeight + options.unit
-  header.style.bottom = options.lineHeight * options.rows + 20 + options.unit
-  center.style.height = options.lineHeight + options.unit
-  center.style.bottom = Math.floor(options.rows / 2) * options.lineHeight + 10 + options.unit
-}
-
-let initDisplayId = function (index, len, levelid, options) {
-  if (index >= len) return
-  let height
-  if (levelid === '') {
-    return -(10 - options.lineHeight * Math.floor(options.rows / 2) - 10)
-  }
-  let cls = ''
-  switch (index) {
-    case 0:
-      cls = `.i-picker-item-levelone-li[data-id="${levelid}"]`
-      break
-    case 1:
-      cls = `.i-picker-item-leveltwo-li[data-id="${levelid}"]`
-      break
-    case 2:
-      cls = `.i-picker-item-levelthree-li[data-id="${levelid}"]`
-      break
-    case 3:
-      cls = `.i-picker-item-levelfour-li[data-id="${levelid}"]`
-      break
-    case 4:
-      cls = `.i-picker-item-levelfive-li[data-id="${levelid}"]`
-      break
-    case 5:
-      cls = `.i-picker-item-levelsix-li[data-id="${levelid}"]`
-      break
-    default:
-      break
-  }
-  let el = utils.gdom(cls)[0]
-  height = el.offsetTop - options.lineHeight * Math.floor(options.rows / 2) - 10
-  utils.addCls(el, 'at')
-  return -height
-}
-
-let getMaxAndMin = function (el, options) {
-  let scrollHeight = el.scrollHeight
-  let height = parseFloat(el.style.height)
-
-  let Max = Math.floor(options.rows / 2) * options.lineHeight + 10
-  let Min = ((scrollHeight - height) + Math.floor(options.rows / 2) * options.lineHeight - 10) * -1
-  return {
-    max: Max,
-    min: Min
-  }
-}
-
-let addEventListener = function (el, options, data, id) {
-  console.log(id)
-  let currentTopHeight, startPos, movePos, startTime, endTime, dValue, nowTop
-
-  let range = getMaxAndMin(el, options)
-
-let addEventListener = function (el, options, data, id) {
-  console.log(id)
-  let currentTopHeight, startPos, movePos, startTime, endTime, dValue, nowTop
-
-  let range = getMaxAndMin(el, options)
-
-  el.addEventListener('touchstart', function (evt) {
-    currentTopHeight = parseFloat(el.style.top) || 0
-    evt.returnValue = false
-    startTime = new Date().getTime()
-    startPos = evt.touches[0].pageY
-  })
-
-  el.addEventListener('touchmove', function (evt) {
-    movePos = evt.touches[0].pageY
-    dValue = movePos - startPos
-
-    nowTop = currentTopHeight + dValue
-    // 最大最小的top值
-    if (nowTop < range.min) {
-      nowTop = range.min
-    } else if (nowTop > range.max) {
-      nowTop = range.max
-    }
-
-    let atEl = el.childNodes
-    let centerUp = options.lineHeight * (Math.floor(options.rows / 2) + 1) + 10 - options.lineHeight / 2
-    let centerDown = options.lineHeight * Math.floor(options.rows / 2) + 10 - options.lineHeight / 2
-
-    // 当前选择项
-    for (let i = 0; i < atEl.length; i++) {
-      if (atEl[i].offsetTop + nowTop > centerDown && atEl[i].offsetTop + nowTop < centerUp) {
-        utils.addCls(atEl[i], 'at')
+  },
+  handleTouchStart: function (e) {
+    e.preventDefault()
+    let el = e.target.parentNode
+    Events.startPosition = e.touches[0].pageY
+    Events.currentTranslateY = parseFloat(el.style.transform.match(new RegExp(Events.pattern), 'igm')[1])
+  },
+  handleTouchMove: function (e) {
+    e.preventDefault()
+    Events.movePosition = e.touches[0].pageY
+    Events.dValue = Events.movePosition - Events.startPosition
+    let el = e.target.parentNode
+    el.style.transform = `translateY(${(Events.currentTranslateY + Events.dValue)}px)`
+    let range = Events.currentTranslateY + Events.dValue
+    let min = Events.options.lineHeight * (Math.floor(Events.options.itemsShow/2) - 1) + Events.options.lineHeight / 2
+    let max = Events.options.lineHeight * (Math.floor(Events.options.itemsShow/2)) + Events.options.lineHeight / 2
+    console.log(min,max)
+    for (let i = 0; i < el.childNodes.length; i++) {
+      if (range > min  - el.childNodes[i].offsetTop && range < max - el.childNodes[i].offsetTop) {
+        utils.addCls(el.childNodes[i], 'at')
       } else {
-        utils.revCls(atEl[i], 'at')
+        utils.revCls(el.childNodes[i], 'at')
       }
     }
-    el.style.top = nowTop + options.unit
-  })
+  },
+  handleTouchEnd: function (e) {
+    e.preventDefault()
+    let el = e.target.parentNode
+    Events.currentTranslateY  =  Events.currentTranslateY + Events.dValue
 
-  el.addEventListener('touchend', function (evt) {
-    endTime = new Date().getTime()
-    console.log(endTime - startTime)
+    let Max = Math.floor(Events.options.itemsShow/2) * Events.options.lineHeight
+    let Min = (el.scrollHeight - (Events.options.itemsShow - Math.floor(Events.options.itemsShow/2)) * Events.options.lineHeight) * -1
+    if (Events.currentTranslateY < Min) {
+      Events.currentTranslateY = Min
+    } else if (Events.currentTranslateY > Max) {
+      Events.currentTranslateY = Max
+    }
+    let index = Math.round(Events.currentTranslateY / Events.options.lineHeight, 0)
+    Events.currentTranslateY =  index * Events.options.lineHeight
 
-    let index = Math.round(nowTop / options.lineHeight, 0)
-    nowTop = index * options.lineHeight
-    el.style.top = nowTop + options.unit
-
-    let atEl = el.childNodes
-    for (let i = 0; i < atEl.length; i++) {
-      if (atEl[i].getAttribute('class').match('at')) {
-        let id = atEl[i].getAttribute('data-id')
-        console.log(id)
-        let cur = []
-        for (let j = 0; j < data[1].length; j++) {
-          if (data[1][j].parentId === id) {
-            cur.push(data[1][j])
+    el.style.transform = `translateY(${Events.currentTranslateY}px)`
+    utils.addCls(el.childNodes[Math.floor(Events.options.itemsShow/2) - index], 'at')
+    let currentIndex = el.dataset.levels - 1
+    let id =el.childNodes[Math.floor(Events.options.itemsShow/2) - index].dataset.id
+    for (let i = currentIndex; i < Events.options.levels - 1; i++) {
+      console.log(nameOfRelation[currentIndex])
+      if (Events.options[nameOfRelation[currentIndex]]) {
+        trigger(id, currentIndex, Events.options)
+        currentIndex ++
+        id = instance[nameOfLevel[currentIndex]][0].id
+      }
+    }
+  },
+  queryCurrentTranslateY: function () {},
+  specificMoveToCenter: function (lineHeight, selectObj, index) {
+    instance.$nextTick(function () {
+      let el = utils.gdom(`.i-picker-item-${nameOfLevel[index]}`)[0]
+      let children = el.childNodes
+      if (selectObj) {
+        for (let i = 0; i < children.length; i++) {
+          if (children[i].dataset.id === selectObj) {
+            Events.moveToCenter(el, children[i], lineHeight)
           }
         }
-        instance.leveltwo = cur
-        instance.$nextTick(function () {
-          initStyle(options)
-        })
+      } else {
+        Events.moveToCenter(el, children[0], lineHeight)
+      }
+    })
+  },
+  AllFirstMoveToCenter: function () {},
+  moveToCenter: function (el, which, lineHeight) {
+    let offsetTop = which.offsetTop
+    el.style.transform = `translateY(${(offsetTop - lineHeight * Math.floor(Events.options.itemsShow/2)) * -1}px)`
+    utils.addCls(which, 'at')
+  }
+}
+let defaultCallback = function () {}
 
-        console.log(instance.leveltwo)
+let bindEvents = function () {
+  let allUl = utils.gdom('.i-picker-item-child')
+  for (let i = 0; i < allUl.length; i++) {
+    allUl[i].addEventListener('touchstart', Events.handleTouchStart, false)
+    allUl[i].addEventListener('touchmove', Events.handleTouchMove, false)
+    allUl[i].addEventListener('touchend', Events.handleTouchEnd, false)
+  }
+}
+let trigger = function (id, index, options) {
+  if (index >= Events.options.levels - 1) return
+  let arr = []
+  for (let i = 0; i < Events.data[index + 1].length; i++) {
+    if (Events.data[index + 1][i].parentId === id) {
+      arr.push(Events.data[index + 1][i])
+    }
+  }
+  instance[nameOfLevel[index + 1]] = arr
+  initPicker.initStyle(options)
+  Events.specificMoveToCenter(options.lineHeight, null,index + 1)
+}
+let initPicker = {
+  initInstance: function () {
+    instance = new PickerConstructor({
+      el: document.createElement('div')
+    })
+    instance.callback = defaultCallback
+  },
+
+  initStyle: function (options) {
+    instance.$nextTick(function () {
+      let allUl = utils.gdom('.i-picker-item-child')
+      let allLi = utils.gdom('.i-picker-item-child-li')
+      let header = utils.gdom('.i-picker-header')[0]
+      let center = utils.gdom('.i-picker-center')[0]
+      let content = utils.gdom('.i-picker-content')[0]
+      let padding = parseFloat(document.defaultView.getComputedStyle(content, '')['padding'].split(' ')[0])
+      let lenUl = allUl.length
+      let lenLi = allLi.length
+      let width = document.body.clientWidth / options.levels
+
+      for (let i = 0; i < lenLi; i++) {
+        utils.setSty(allLi[i], 'lineHeight', options.lineHeight + options.unit)
+        utils.setSty(allLi[i], 'height', options.lineHeight + options.unit)
+      }
+      for (let i = 0; i < lenUl; i++) {
+        utils.setSty(allUl[i], 'height', options.lineHeight * options.itemsShow + options.unit)
+        utils.setSty(allUl[i], 'width', width + options.unit)
+      }
+      utils.setSty(center, 'height', options.lineHeight + options.unit)
+      utils.setSty(center, 'bottom', options.lineHeight * Math.floor(options.itemsShow / 2) + padding + options.unit)
+      utils.setSty(header, 'height', options.titleHeight + options.unit)
+      utils.setSty(header, 'bottom', options.lineHeight * options.itemsShow + 2 * padding + options.unit)
+    })
+  },
+
+  initData: function (options, data, index, selectObj, fatherSelectObj) {
+    let excute = nameOfLevel[index]
+    let newExcuteData = []
+    if (index !== 0 && options[nameOfRelation[index - 1]]) {
+      for (let i = 0; i < data[index].length; i++) {
+        if (data[index][i].parentId === fatherSelectObj) {
+          newExcuteData.push(data[index][i])
+        }
+      }
+      instance[excute] = newExcuteData
+      initPicker.initStyle(options)
+      Events.specificMoveToCenter(options.lineHeight, selectObj, index)
+    } else {
+      instance[excute] = data[index]
+      initPicker.initStyle(options)
+      Events.specificMoveToCenter(options.lineHeight, selectObj, index)
+    }
+  },
+  initDefaultSelectObj: function (data, options) {
+    let level = options.levels
+    for (let i = 0; i < level; i++) {
+      if (i === 0) {
+        initPicker.initData(options, data, 0, options.leveloneId, null)
+      } else {
+        let fatherSelectObj
+        if (options[nameOfRelation[i-1]]) {
+          fatherSelectObj = options[nameOfLevel[i - 1] + 'Id'] || instance[nameOfLevel[i - 1]][0].id
+        } else {
+          fatherSelectObj = null
+        }
+        initPicker.initData(options, data, i, options[nameOfLevel[i] + 'Id'], fatherSelectObj)
       }
     }
-  })
+  }
 }
-// PICKER
-let Picker = function (colunms, data, options) {
+
+let Picker = function (levels, data, options, callback) {
   if (!instance) {
-    initInstance()
+    initPicker.initInstance()
   }
-  options.colunms = colunms
+  Events.data = data
+  options.levels = levels
+  // for (let i = 0; i < options.relation.length; i++) {
+  //   options[nameOfRelation[i]] = !!options.relation
+  // }
   options = utils.extend({}, defaults, options)
+  Events.options = options
 
-  for (let key in options) {
+  for (var key in options) {
     instance[key] = options[key]
-  }
-
-  let len = data.length
-  if (len === 0) return
-
-  for (let i = 0; i < len; i++) {
-    instance[dataName[i]] = data[i]
   }
 
   document.body.appendChild(instance.$el)
 
+  initPicker.initStyle(options)
+  initPicker.initDefaultSelectObj(data, options)
+
   instance.$nextTick(function () {
-    initStyle(options)
-    let el = utils.gdom('.i-picker-item-child')
-    for (let i = 0; i < el.length; i++) {
-      let topinit = initDisplayId(i, 2, '', options)
-      el[i].style.top = topinit + 'px'
-      let id = el[i].getAttribute('data-columns')
-      addEventListener(el[i], options, data, id)
-    }
+    bindEvents()
   })
 
   instance.flag = true
 }
-
 export default Picker

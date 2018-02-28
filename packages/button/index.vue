@@ -1,8 +1,7 @@
 <template>
   <button class="i-button"
           :class="['i-button-'+type, 'i-button-'+size, 'i-button-'+radius, {'is-disabled': disabled}]"
-          @click="handleClick"
-          v-backcover>
+          @click="handleClick">
     <span class="i-button-text">
       <slot></slot>
     </span>
@@ -65,10 +64,11 @@
             cover.style.left = '0'
             cover.style.width = '100%'
             cover.style.height = '100%'
+            cover.style.pointerEvents = 'none'
             cover.style.borderRadius = borderRadius
-            cover.style.background = 'rgba(0, 0, 0, 0.1)'
+            // cover.style.background = 'rgba(0, 0, 0, 0.1)'
             el.appendChild(cover)
-            e.returnValue = false
+            e.preventDefault()
           })
           el.addEventListener('touchend', function () {
             let backcover = document.getElementsByClassName('backcover')

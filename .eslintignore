@@ -1,7 +1,7 @@
 /build/
 /config/
 /dist/
-/src/config/
+/examples/config/
 /*.js
 /examples/resize.js
 /test/unit/coverage/

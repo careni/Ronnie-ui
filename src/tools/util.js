@@ -1,62 +1,34 @@
-/**
- * 获取DOM元素
- * @param  {String} index 选择器
- * @return {Array}       DOM树
- */
+// get dom
 export const gdom = function (index) {
   let el = null
-
   el = document.querySelectorAll(index)
   return el
 }
 
-/**
- * 删除某个class
- * @param  {DOM} el  对应的Dom对象
- * @param  {String} cls 类名
- */
+// remove class from element
 export const revCls = function (el, cls) {
-  if (typeof el === 'undefined' || typeof cls === 'undefined') return
+  if (!hasCls(el, cls)) return
 
-  let curCls = el.getAttribute('class')
-
-  if (curCls === null) return
-
-  let nextCls = ''
-  if (curCls.match(cls)) {
-    let clsArr = curCls.split(' ')
-    let index = clsArr.indexOf(cls)
-    clsArr.splice(index, index + 1)
-    nextCls = clsArr.join(' ')
-    el.setAttribute('class', nextCls)
-  }
+  let reg = new RegExp('(^|\\s)' + cls + '(\\s|$)', 'g')
+  el.className = el.className.replace(reg, ' ')
 }
 
-/**
- * 添加某个class
- * @param  {DOM} el  对应的Dom对象
- * @param  {String} cls 类名
- */
+// add class to element
 export const addCls = function (el, cls) {
-  if (typeof el === 'undefined' || typeof cls === 'undefined') return
+  if (hasCls(el, cls)) return
 
-  let curCls = el.getAttribute('class')
-
-  if (curCls === null) return
-
-  let nextCls = ''
-  if (!curCls.match(cls)) {
-    let clsArr = curCls.split(' ')
-    clsArr.push(cls)
-    nextCls = clsArr.join(' ')
-    el.setAttribute('class', nextCls)
-  }
+  let newClass = el.className.split(' ')
+  newClass.push(cls)
+  el.className = newClass.join(' ')
 }
 
-/**
- * 拷贝对象
- * @param {*} target
- */
+// whether element has class
+export const hasCls = function (el, cls) {
+  let reg = new RegExp('(^|\\s)' + cls + '(\\s|$)')
+  return reg.test(el.className)
+}
+
+// copy object
 export const extend = function (target) {
   for (var i = 1, j = arguments.length; i < j; i++) {
     var source = arguments[i]
@@ -70,4 +42,8 @@ export const extend = function (target) {
     }
   }
   return target
+}
+
+export const setSty = function (el, attr, index) {
+  el.style[attr] = index
 }

@@ -12,6 +12,7 @@ import messagebox from '@/pages/message-box.vue'
 import popup from '@/pages/popup'
 import search from '@/pages/search'
 import picker from '@/pages/picker'
+import cellswipe from '@/pages/cell-swipe'
 
 Vue.use(Router)
 
@@ -76,6 +77,11 @@ export default new Router({
       path: '/picker',
       name: 'picker',
       component: picker
+    },
+    {
+      path: '/cellswipe',
+      name: 'cellswipe',
+      component: cellswipe
     }
   ]
 })

@@ -3,7 +3,7 @@
     @touchstart.stop="startMove"
     @touchmove.stop="moving"
     @touchend.stop="endMove">
-  <div class="cell-select" :class="{show: moveLeft}">
+    <div class="cell-select" :class="{show: moveLeft}">
       <input type="checkbox" name="item">
     </div>
     <slot name="content"></slot>
@@ -20,11 +20,23 @@
       return {
         start: {x: 0, y: 0},
         end: {x: 0, y: 0},
-        moveLeft: false,
+        // moveLeft: false,
         moveRight: false
       }
     },
-    props: ['content'],
+    props: ['content', 'editing'],
+    watch: {
+      editing () {
+        if (this.editing) {
+          this.moveRight = false
+        }
+      }
+    },
+    computed: {
+      moveLeft () {
+        return this.editing
+      }
+    },
     methods: {
       startMove (evt) {
         evt = evt.changedTouches ? evt.changedTouches[0] : evt
@@ -36,16 +48,11 @@
         const e = evt.changedTouches ? evt.changedTouches[0] : evt
         const offsetTop = e.pageY - this.start.y
         const offsetLeft = this.offsetLeft = e.pageX - this.start.x
-        console.log(offsetTop, offsetLeft)
-        if (offsetLeft > 100 && Math.abs(offsetTop) < Math.abs(offsetLeft)) {
-          this.moveLeft = true
-          this.moveRight = false
-        } else if (offsetLeft < -150 && Math.abs(offsetTop) < Math.abs(offsetLeft)) {
+        if (offsetLeft < -150 && Math.abs(offsetTop) < Math.abs(offsetLeft)) {
           this.moveRight = true
-          this.moveLeft = false
+          this.$emit('cancel')
         } else {
           this.moveRight = false
-          this.moveLeft = false
         }
       },
       endMove (evt) {

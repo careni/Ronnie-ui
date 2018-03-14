@@ -38,8 +38,11 @@
       <li class="page-list-item" @click="locationTo('picker')">
         <div class="page-list-item-info">Picker</div>
       </li>
-       <li class="page-list-item" @click="locationTo('cellswipe')">
+      <li class="page-list-item" @click="locationTo('cellswipe')">
         <div class="page-list-item-info">Cell-swipe</div>
+      </li>
+      <li class="page-list-item" @click="locationTo('list')">
+        <div class="page-list-item-info">List</div>
       </li>
     </ul>
   </div>

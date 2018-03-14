@@ -13,6 +13,7 @@ import popup from '@/pages/popup'
 import search from '@/pages/search'
 import picker from '@/pages/picker'
 import cellswipe from '@/pages/cell-swipe'
+import list from '@/pages/list'
 
 Vue.use(Router)
 
@@ -82,6 +83,11 @@ export default new Router({
       path: '/cellswipe',
       name: 'cellswipe',
       component: cellswipe
+    },
+    {
+      path: '/list',
+      name: 'list',
+      component: list
     }
   ]
 })

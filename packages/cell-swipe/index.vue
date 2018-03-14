@@ -4,7 +4,7 @@
     @touchmove.stop="moving"
     @touchend.stop="endMove">
     <div class="cell-select" :class="{show: moveLeft}">
-      <input type="checkbox" name="item">
+      <input type="checkbox" name="item" @click="changeCheck" :checked="checking">
     </div>
     <slot name="content"></slot>
     <div class="delete" :class="{show: moveRight}"
@@ -20,11 +20,10 @@
       return {
         start: {x: 0, y: 0},
         end: {x: 0, y: 0},
-        // moveLeft: false,
         moveRight: false
       }
     },
-    props: ['content', 'editing'],
+    props: ['content', 'editing', 'checking'],
     watch: {
       editing () {
         if (this.editing) {
@@ -63,6 +62,9 @@
         this.moveRight = false
         this.moveLeft = false
         this.$emit('delete', this.content)
+      },
+      changeCheck (e) {
+        this.$emit('changeDel', [e.target.checked, this.content])
       }
     }
   }
@@ -73,7 +75,6 @@
   .cell-swipe {
     position: relative;
     display: flex;
-    // width: calc(100% + 300px);
     height: 100px;
     line-height: 100px;
     overflow: hidden;
@@ -81,12 +82,19 @@
       display: none;
       width: 100px;
       input {
+        -webkit-appearance: none;
         width: 40px;
         height: 40px;
-        margin: 20px 0 0 20px;
+        border: 2px solid #ccc;
+        margin: 30px 0 0 20px;
+        border-radius: 50%;
+        &:checked {
+          background-color: #fcf;
+        }
       }
       border-bottom: 1px solid #eee;
     }
+
     .cell-content {
       display: inline-block;
       width: 100%;

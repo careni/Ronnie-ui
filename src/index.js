@@ -11,6 +11,7 @@ import Card from '%/card/index'
 import MessageBox from '%/message-box/message-box.js'
 import Picker from '%/picker/picker.js'
 import Popup from '%/popup/popup.js'
+import CellSwipe from '%/cell-swipe/index'
 
 import Lazyload from '%/directives/lazyload'
 
@@ -33,6 +34,7 @@ const install = function (Vue, Config = {}) {
   Vue.component(List.name, List)
   Vue.component(Search.name, Search)
   Vue.component(Card.name, Card)
+  Vue.component(CellSwipe.name, CellSwipe)
 
   // 结构组件引入
 
@@ -65,5 +67,6 @@ export default{
   MessageBox,
   Popup,
   Picker,
-  Lazyload
+  Lazyload,
+  CellSwipe
 }

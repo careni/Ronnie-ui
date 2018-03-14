@@ -1,0 +1,121 @@
+<template>
+  <div class="cell-swipe"
+    @touchstart.stop="startMove"
+    @touchmove.stop="moving"
+    @touchend.stop="endMove">
+    <div class="cell-select" :class="{show: moveLeft}">
+      <input type="checkbox" name="item" @click="changeCheck" :checked="checking">
+    </div>
+    <slot name="content"></slot>
+    <div class="delete" :class="{show: moveRight}"
+      @click="deleteItem"
+      >删除</div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'i-cell-swipe',
+    data () {
+      return {
+        start: {x: 0, y: 0},
+        end: {x: 0, y: 0},
+        moveRight: false
+      }
+    },
+    props: ['content', 'editing', 'checking'],
+    watch: {
+      editing () {
+        if (this.editing) {
+          this.moveRight = false
+        }
+      }
+    },
+    computed: {
+      moveLeft () {
+        return this.editing
+      }
+    },
+    methods: {
+      startMove (evt) {
+        evt = evt.changedTouches ? evt.changedTouches[0] : evt
+        this.start.x = evt.pageX
+        this.start.y = evt.pageY
+        console.log(this.start)
+      },
+      moving (evt) {
+        const e = evt.changedTouches ? evt.changedTouches[0] : evt
+        const offsetTop = e.pageY - this.start.y
+        const offsetLeft = this.offsetLeft = e.pageX - this.start.x
+        if (offsetLeft < -150 && Math.abs(offsetTop) < Math.abs(offsetLeft)) {
+          this.moveRight = true
+          this.$emit('cancel')
+        } else {
+          this.moveRight = false
+        }
+      },
+      endMove (evt) {
+        console.log(evt)
+      },
+      deleteItem () {
+        console.log('deleteItem')
+        this.moveRight = false
+        this.moveLeft = false
+        this.$emit('delete', this.content)
+      },
+      changeCheck (e) {
+        this.$emit('changeDel', [e.target.checked, this.content])
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  @import '../../src/style/var.scss';
+  .cell-swipe {
+    position: relative;
+    display: flex;
+    height: 100px;
+    line-height: 100px;
+    overflow: hidden;
+    .cell-select {
+      display: none;
+      width: 100px;
+      input {
+        -webkit-appearance: none;
+        width: 40px;
+        height: 40px;
+        border: 2px solid #ccc;
+        margin: 30px 0 0 20px;
+        border-radius: 50%;
+        &:checked {
+          background-color: #fcf;
+        }
+      }
+      border-bottom: 1px solid #eee;
+    }
+
+    .cell-content {
+      display: inline-block;
+      width: 100%;
+      text-indent: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    .delete {
+      display: none;
+      text-align: center;
+      width: 200px;
+      background-color: #ffc;
+      border-top: 0.5px solid #eee;
+      border-bottom: 0.5px solid #eee;
+    }
+  }
+  .show {
+    display: inline-block !important;
+    transition: display 2s;
+    -webkit-transition: display 2s;
+  }
+  .right {
+    display: inline-block;
+  }
+</style>

@@ -14,7 +14,7 @@ import * as utils from '../../src/tools/util'
 
 let PickerConstructor = Vue.extend(vuePicker)
 
-let instance, msgQueue
+let instance
 let defaults = {
   lineHeight: 50,
   titleHeight: 40,
@@ -33,7 +33,7 @@ let defaults = {
   relationFourFive: true,
   relationFiveSix: true
 }
-let nameOfRelation = ['relationOneTwo', 'relationTwoThree' ,'relationThreeFour', 'relationFourFive' ,'relationFiveSix']
+let nameOfRelation = ['relationOneTwo', 'relationTwoThree', 'relationThreeFour', 'relationFourFive', 'relationFiveSix']
 let nameOfLevel = ['levelone', 'leveltwo', 'levelthree', 'levelfour', 'levelfive', 'levelsix']
 let Events = {
   startPosition: 0,
@@ -60,11 +60,11 @@ let Events = {
     let el = e.target.parentNode
     el.style.transform = `translateY(${(Events.currentTranslateY + Events.dValue)}px)`
     let range = Events.currentTranslateY + Events.dValue
-    let min = Events.options.lineHeight * (Math.floor(Events.options.itemsShow/2) - 1) + Events.options.lineHeight / 2
-    let max = Events.options.lineHeight * (Math.floor(Events.options.itemsShow/2)) + Events.options.lineHeight / 2
-    console.log(min,max)
+    let min = Events.options.lineHeight * (Math.floor(Events.options.itemsShow / 2) - 1) + Events.options.lineHeight / 2
+    let max = Events.options.lineHeight * (Math.floor(Events.options.itemsShow / 2)) + Events.options.lineHeight / 2
+    console.log(min, max)
     for (let i = 0; i < el.childNodes.length; i++) {
-      if (range > min  - el.childNodes[i].offsetTop && range < max - el.childNodes[i].offsetTop) {
+      if (range > min - el.childNodes[i].offsetTop && range < max - el.childNodes[i].offsetTop) {
         utils.addCls(el.childNodes[i], 'at')
       } else {
         utils.revCls(el.childNodes[i], 'at')
@@ -74,27 +74,27 @@ let Events = {
   handleTouchEnd: function (e) {
     e.preventDefault()
     let el = e.target.parentNode
-    Events.currentTranslateY  =  Events.currentTranslateY + Events.dValue
+    Events.currentTranslateY = Events.currentTranslateY + Events.dValue
 
-    let Max = Math.floor(Events.options.itemsShow/2) * Events.options.lineHeight
-    let Min = (el.scrollHeight - (Events.options.itemsShow - Math.floor(Events.options.itemsShow/2)) * Events.options.lineHeight) * -1
+    let Max = Math.floor(Events.options.itemsShow / 2) * Events.options.lineHeight
+    let Min = (el.scrollHeight - (Events.options.itemsShow - Math.floor(Events.options.itemsShow / 2)) * Events.options.lineHeight) * -1
     if (Events.currentTranslateY < Min) {
       Events.currentTranslateY = Min
     } else if (Events.currentTranslateY > Max) {
       Events.currentTranslateY = Max
     }
     let index = Math.round(Events.currentTranslateY / Events.options.lineHeight, 0)
-    Events.currentTranslateY =  index * Events.options.lineHeight
+    Events.currentTranslateY = index * Events.options.lineHeight
 
     el.style.transform = `translateY(${Events.currentTranslateY}px)`
-    utils.addCls(el.childNodes[Math.floor(Events.options.itemsShow/2) - index], 'at')
+    utils.addCls(el.childNodes[Math.floor(Events.options.itemsShow / 2) - index], 'at')
     let currentIndex = el.dataset.levels - 1
-    let id =el.childNodes[Math.floor(Events.options.itemsShow/2) - index].dataset.id
+    let id = el.childNodes[Math.floor(Events.options.itemsShow / 2) - index].dataset.id
     for (let i = currentIndex; i < Events.options.levels - 1; i++) {
       console.log(nameOfRelation[currentIndex])
       if (Events.options[nameOfRelation[currentIndex]]) {
         trigger(id, currentIndex, Events.options)
-        currentIndex ++
+        currentIndex++
         id = instance[nameOfLevel[currentIndex]][0].id
       }
     }
@@ -118,7 +118,7 @@ let Events = {
   AllFirstMoveToCenter: function () {},
   moveToCenter: function (el, which, lineHeight) {
     let offsetTop = which.offsetTop
-    el.style.transform = `translateY(${(offsetTop - lineHeight * Math.floor(Events.options.itemsShow/2)) * -1}px)`
+    el.style.transform = `translateY(${(offsetTop - lineHeight * Math.floor(Events.options.itemsShow / 2)) * -1}px)`
     utils.addCls(which, 'at')
   }
 }
@@ -142,7 +142,7 @@ let trigger = function (id, index, options) {
   }
   instance[nameOfLevel[index + 1]] = arr
   initPicker.initStyle(options)
-  Events.specificMoveToCenter(options.lineHeight, null,index + 1)
+  Events.specificMoveToCenter(options.lineHeight, null, index + 1)
 }
 let initPicker = {
   initInstance: function () {
@@ -204,7 +204,7 @@ let initPicker = {
         initPicker.initData(options, data, 0, options.leveloneId, null)
       } else {
         let fatherSelectObj
-        if (options[nameOfRelation[i-1]]) {
+        if (options[nameOfRelation[i - 1]]) {
           fatherSelectObj = options[nameOfLevel[i - 1] + 'Id'] || instance[nameOfLevel[i - 1]][0].id
         } else {
           fatherSelectObj = null
